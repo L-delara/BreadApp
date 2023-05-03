@@ -9,10 +9,25 @@ router.get("/", (req, res) => {
 });
 
 //GET bread by index (specific bread)
+router.get("/new", (req, res) => {
+  res.render("new");
+});
+
 router.get("/:index", (req, res) => {
   const { index } = req.params;
   res.render("show", {
     bread: Bread[index],
   });
 });
+
+router.post("/", (req, res) => {
+  if (req.body.hasGluten === "on") {
+    req.body.hasGluten = true;
+  } else {
+    req.body.hasGluten = false;
+  }
+  Bread.push(req.body);
+  res.redirect("/breads");
+});
+
 module.exports = router;
