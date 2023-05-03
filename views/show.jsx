@@ -17,6 +17,12 @@ function Show({ bread }) {
         gluten
       </p>
       <img src={bread.image} alt={bread.name} />
+
+      <div className="newButton">
+        <a href="/breads/">
+          <button>Home</button>
+        </a>
+      </div>
     </Default>
   );
 }
