@@ -33,4 +33,10 @@ router.post("/", (req, res) => {
   res.redirect("/breads");
 });
 
+router.delete("/:index", (req, res) => {
+  const { index } = req.params;
+  Bread.splice(index, 1);
+  res.status(303).redirect("/breads");
+});
+
 module.exports = router;
