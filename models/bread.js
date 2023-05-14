@@ -9,13 +9,14 @@ const breadSchema = new mongoose.Schema({
       "https://img.freepik.com/premium-vector/cute-funny-bread-toast-character_92289-2249.jpg",
   },
   baker: {
-    type: String,
-    // required: true,
-    enum: ["Rachel", "Ross", "Monica", "Joey", "Chandler", "Pheobe"],
+    type: mongoose.Types.ObjectId,
+    ref: "Baker",
   },
 });
 
 breadSchema.methods.getBakedBy = function () {
-  return `This ${this.name} was baked with ❤ by ${this.baker}`;
+  return `This ${this.name} was baked with ❤ by ${
+    this.baker.name
+  } who has been baking with us since ${this.baker.startDate.getFullYear()}.`;
 };
 module.exports = mongoose.model("Bread", breadSchema);
